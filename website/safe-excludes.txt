@@ -1,0 +1,36 @@
+# Supplemental template; merge into the receiving website folder's .gitignore.
+# This file is not applied automatically by Git.
+node_modules/
+dist/
+.output/
+.env
+.env.*
+!.env.example
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.parquet
+*.feather
+datasets/
+data/
+results/
+artifacts/*
+!artifacts/.gitkeep
+*.pkl
+*.pickle
+*.joblib
+*.cbm
+*.ubj
+*.onnx
+*.pt
+*.pth
+*.h5
+*.hdf5
+*.keras
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
