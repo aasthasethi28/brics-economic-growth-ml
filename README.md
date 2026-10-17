@@ -1,183 +1,236 @@
-# Machine Learning Analysis of Economic Growth in BRICS Countries (2000–2024)
+# 🌍 BRICS Economic Growth Lab
+### Machine Learning Research · Interactive Analytics · Economic Indicators
+
+<p align="center">
+  <a href="https://brics-growth-insights.lovable.app">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-Explore_Dashboard-216E4B?style=for-the-badge" alt="Live Demo"/>
+  </a>
+  <a href="https://github.com/aasthasethi28/brics-economic-growth-ml">
+    <img src="https://img.shields.io/badge/GitHub-Source_Code-172B4D?style=for-the-badge&logo=github" alt="GitHub Repository"/>
+  </a>
+</p>
+
+<p align="center">
+  <b>Exploring the relationship between economic growth and environmental, energy, financial, and macroeconomic indicators across five BRICS countries from 2000 to 2024.</b>
+</p>
+
+---
+
+## 🚀 Explore the Project
+
+| Resource | Description |
+|---|---|
+| 🌐 **[Open Live Website](https://brics-growth-insights.lovable.app)** | Explore the research showcase, interactive dashboard, methodology, and prediction interface. |
+| 💻 **[View Source Code](https://github.com/aasthasethi28/brics-economic-growth-ml)** | Browse the research notebook and website source code. |
+| 📊 **[Open ML Notebook](./ML_Model.ipynb)** | Review the machine learning analysis and experiments. |
+| 📖 **[Research Methodology](#-methodology)** | Understand the data preparation, validation, and evaluation process. |
+
+> **Data integrity note:** The website may display illustrative demo data to demonstrate the interface. Such values are not empirical research results. Use verified experimental outputs for scientific interpretation.
 
 ## 📌 Project Overview
 
-This project investigates the relationship between economic growth and selected environmental, energy, financial, and macroeconomic indicators across five BRICS countries from 2000 to 2024 using machine learning techniques.
+BRICS Economic Growth Lab is a research and analytics project combining a machine learning notebook with a web-based interface.
 
-The study uses historical panel data to analyze predictive relationships between economic growth and six explanatory variables. Multiple regression models are evaluated using time-based cross-validation and a separate test dataset.
+The project examines the predictive relationships between economic growth and six explanatory variables representing emissions, renewable energy, carbon credits, trade openness, inflation, and industrialization.
 
-## 🎯 Objectives
+The repository brings together:
+- A Python-based machine learning research workflow.
+- An interactive web dashboard for exploring results.
+- A methodology and variable documentation section.
+- A prediction interface designed to connect with trained models through a Python API.
 
-- Analyze economic growth patterns across five BRICS countries.
-- Examine relationships between economic growth and selected explanatory variables.
-- Assess multicollinearity among the predictors.
-- Train and compare machine learning regression models.
-- Use chronological cross-validation to evaluate model performance.
-- Evaluate predictions on unseen observations from 2020–2024.
-- Visualize actual versus predicted values.
-- Examine Random Forest feature importance.
+## 📊 Project at a Glance
 
-## 📊 Dataset Description
+| Component | Details |
+|---|---|
+| Geographic scope | Five BRICS countries |
+| Study period | 2000–2024 |
+| Training period | 2000–2019 |
+| Held-out test period | 2020–2024 |
+| Target variable | `Ingdp` |
+| Predictor variables | Six |
+| Regression models | Random Forest, XGBoost, CatBoost |
+| Evaluation metrics | R², RMSE, MAE, MAPE |
+| Frontend | React and TypeScript |
+| Visualization | Interactive charts |
+| Prediction backend | Python and FastAPI scaffold |
 
-The dataset covers five BRICS countries over the period 2000–2024.
+## 🎯 Research Objectives
 
-| Dataset | Period | Purpose |
+1. Examine economic growth patterns across the five countries.
+2. Analyze correlations between the target and explanatory variables.
+3. Assess multicollinearity using Variance Inflation Factors (VIF).
+4. Train and compare tree-based machine learning regression models.
+5. Evaluate models using chronological cross-validation.
+6. Test generalization on the held-out 2020–2024 observations.
+7. Examine Random Forest feature importance.
+8. Present the methodology and results through an accessible web interface.
+
+## 🧭 Interactive Project Workflow
+
+```mermaid
+flowchart TD
+    A["BRICS Panel Data<br/>2000–2024"] --> B["Data Preparation"]
+    B --> C["Training<br/>2000–2019"]
+    B --> D["Held-out Test<br/>2020–2024"]
+    C --> E["Exploratory Analysis"]
+    E --> F["Correlation and VIF"]
+    F --> G["Temporal Cross-Validation"]
+    G --> H["Random Forest"]
+    G --> I["XGBoost"]
+    G --> J["CatBoost"]
+    H --> K["Model Comparison"]
+    I --> K
+    J --> K
+    K --> L["Test Evaluation"]
+    D --> L
+    L --> M["Metrics and Visualizations"]
+    M --> N["Interactive Website"]
+```
+
+## 🌐 Website Features
+
+Open the **[live website](https://brics-growth-insights.lovable.app)** to explore the project presentation.
+
+| Section | Purpose |
+|---|---|
+| Overview | Introduces the research question, scope, and project objectives. |
+| Methodology | Explains the variables, training/test periods, and modeling workflow. |
+| Dashboard | Provides a place to explore indicator trends, model comparisons, and analysis outputs. |
+| Prediction | Presents a form designed to request predictions from the Python backend. |
+| Limitations | Describes interpretation constraints and data limitations. |
+
+### Dashboard data
+
+The dashboard is designed to use verified research outputs. Illustrative preview values, where enabled, are explicitly labeled and should not be cited as findings.
+
+### Live prediction status
+
+The prediction interface requires a running API and compatible trained model artifacts. A working interface alone does not mean that a trained model is connected or that predictions are available.
+
+## 📁 Dataset and Variables
+
+The analysis uses separate training and test datasets.
+
+| Dataset | Years | Role |
 |---|---|---|
-| Training dataset | 2000–2019 | Model training, tuning, and temporal cross-validation |
+| Training dataset | 2000–2019 | Model fitting and temporal validation |
 | Test dataset | 2020–2024 | Final evaluation on unseen observations |
 
-### Variables
+### Target and predictors
 
 | Variable | Description |
 |---|---|
-| `Ingdp` | Log-transformed GDP; target variable |
-| `Inco2` | Log-transformed CO₂ emissions |
+| `Ingdp` | Log-transformed GDP; prediction target |
+| `Inco2` | Log-transformed CO₂ emissions indicator |
 | `Inrec` | Log-transformed renewable energy indicator |
 | `Incc` | Log-transformed carbon credits indicator |
 | `Into` | Log-transformed trade openness indicator |
 | `Ininf` | Log-transformed inflation indicator |
 | `Inind` | Log-transformed industrialization indicator |
-| `COUNTRY NAME` | Country identifier |
-| `YEAR` | Year of observation |
 
-*Note: The variable names and transformations follow the supplied dataset. Exact indicator definitions, units, and sources should be documented from the original data sources.*
-
-## 🛠️ Technologies Used
-
-- **Python** — Programming and analysis
-- **Pandas** — Data manipulation
-- **NumPy** — Numerical computations
-- **Matplotlib** — Data visualization
-- **Seaborn** — Statistical visualizations
-- **Scikit-learn** — Machine learning, pipelines, evaluation metrics, and temporal cross-validation
-- **XGBoost** — Gradient-boosted regression
-- **CatBoost** — Gradient boosting regression
-- **Jupyter Notebook** — Interactive analysis
+The exact definitions, units, transformations, and data sources should be confirmed from the original dataset documentation.
 
 ## 🔬 Methodology
 
-The project follows these stages:
+1. **Data preparation:** Load and organize the country-year observations.
+2. **Descriptive analysis:** Examine the distribution and summary statistics of the variables.
+3. **Correlation analysis:** Evaluate pairwise linear relationships.
+4. **Multicollinearity analysis:** Calculate VIF values for the predictors.
+5. **Temporal validation:** Use chronological splits so validation years follow training years.
+6. **Model training and tuning:** Evaluate Random Forest, XGBoost, and CatBoost.
+7. **Model evaluation:** Calculate R², RMSE, MAE, and MAPE.
+8. **Visualization:** Compare observed and predicted values.
+9. **Interpretability:** Examine built-in Random Forest feature importance.
+10. **Presentation:** Make verified findings accessible through the website.
 
-1. **Data preparation:** Load the training and test datasets and select the target and predictor variables.
-2. **Exploratory data analysis:** Examine descriptive statistics and variable distributions.
-3. **Correlation analysis:** Investigate linear relationships among the analysis variables.
-4. **Multicollinearity assessment:** Calculate Variance Inflation Factors (VIF).
-5. **Temporal cross-validation:** Create chronological training and validation splits using the training period.
-6. **Model training and tuning:** Train and tune Random Forest, XGBoost, and CatBoost regression models.
-7. **Model comparison:** Compare models using cross-validation results.
-8. **Final evaluation:** Evaluate model predictions on the held-out 2020–2024 dataset.
-9. **Visualization:** Plot actual versus predicted values.
-10. **Feature importance:** Extract and visualize Random Forest feature importance.
+### Why temporal validation?
 
-## 🔄 Project Workflow
+Randomly splitting observations can allow later years to influence model development when predicting earlier or future periods. Chronological validation better reflects the intended task of learning from historical observations.
 
-The following diagram summarizes the main stages of the analysis.
-
-```mermaid
-flowchart TD
-    A["BRICS Panel Data<br/>2000–2024"] --> B["Data Preparation"]
-    B --> C["Training Data<br/>2000–2019"]
-    B --> D["Test Data<br/>2020–2024"]
-
-    C --> E["Exploratory Data Analysis"]
-    E --> F["Correlation Analysis"]
-    F --> G["VIF Analysis"]
-    G --> H["Time-Based Cross-Validation"]
-
-    H --> I["Random Forest"]
-    H --> J["XGBoost"]
-    H --> K["CatBoost"]
-
-    I --> L["Model Comparison"]
-    J --> L
-    K --> L
-
-    L --> M["Final Test Evaluation"]
-    D --> M
-
-    M --> N["R², RMSE, MAE and MAPE"]
-    M --> O["Actual vs Predicted Plot"]
-    I --> P["Random Forest Feature Importance"]
-```
-
-## 🏗️ Model Structure
-
-The project uses supervised regression to estimate `Ingdp` from six explanatory variables.
-
-```mermaid
-flowchart LR
-    A["Input Features<br/>Inco2, Inrec, Incc<br/>Into, Ininf, Inind"]
-    B["Regression Model<br/>Random Forest / XGBoost / CatBoost"]
-    C["Predicted Target<br/>Ingdp"]
-    D["Performance Evaluation"]
-
-    A --> B --> C --> D
-```
-
-### Model Inputs and Output
-
-- **Input features:** `Inco2`, `Inrec`, `Incc`, `Into`, `Ininf`, and `Inind`
-- **Target variable:** `Ingdp`
-- **Task:** Supervised regression
-- **Training period:** 2000–2019
-- **Testing period:** 2020–2024
-
-The models learn predictive patterns from historical observations. Predictions are compared with actual target values to evaluate performance on unseen observations.
+The 2020–2024 test set should remain separate from model fitting and hyperparameter selection.
 
 ## 🤖 Machine Learning Models
 
-### 1. Random Forest Regressor
+### Random Forest Regressor
+An ensemble of decision trees that can model nonlinear relationships between the selected predictors and the target.
 
-Random Forest is an ensemble learning algorithm that combines predictions from multiple decision trees. It can capture nonlinear relationships and interactions among predictors.
+### XGBoost Regressor
+A gradient-boosting algorithm that builds trees sequentially to improve predictive performance.
 
-The analysis also extracts built-in Random Forest feature importance to examine the relative contribution of predictors to the model.
+### CatBoost Regressor
+A gradient-boosting method that learns an ensemble of decision trees.
 
-### 2. XGBoost Regressor
+### Evaluation metrics
 
-XGBoost uses gradient boosting to build decision trees sequentially, with each stage attempting to improve the overall model.
+| Metric | Meaning | Preferred direction |
+|---|---|---|
+| R² | Variation in the target explained by model predictions | Generally higher |
+| RMSE | Error measure that penalizes larger errors | Lower |
+| MAE | Average absolute prediction error | Lower |
+| MAPE | Average absolute percentage error | Lower |
 
-### 3. CatBoost Regressor
+Actual performance numbers should be added only from verified experiment outputs. A model's cross-validation ranking may differ from its performance on the held-out test period.
 
-CatBoost is a gradient-boosting algorithm that builds an ensemble of trees and can model complex nonlinear relationships.
+## 🏗️ Prediction API Architecture
 
-Hyperparameter tuning and time-based cross-validation are used to assess model performance.
+The website is designed to communicate with a Python FastAPI backend.
 
-## 📏 Evaluation Metrics
+```mermaid
+flowchart LR
+    A["Website Prediction Form"] --> B["FastAPI Endpoint"]
+    B --> C["Validate Model and Features"]
+    C --> D["Load Trained Model"]
+    D --> E["Generate Prediction"]
+    E --> F["Return Ingdp Prediction"]
+    F --> A
+```
 
-| Metric | Interpretation |
+Expected endpoints:
+
+| Endpoint | Purpose |
 |---|---|
-| R² | Measures how well predictions explain variation in the target |
-| RMSE | Measures prediction error while penalizing larger errors |
-| MAE | Measures the average absolute prediction error |
-| MAPE | Measures average absolute percentage error |
+| `GET /api/health` | Check backend and model availability |
+| `POST /api/predict` | Request a prediction from a selected trained model |
 
-Higher R² generally indicates a better fit, while lower RMSE, MAE, and MAPE indicate smaller prediction errors. Metrics should be interpreted together rather than relying on a single measure.
+The prediction endpoint expects six numeric inputs: `Inco2`, `Inrec`, `Incc`, `Into`, `Ininf`, and `Inind`.
 
-## 📈 Visualizations
+**Important:** The backend must load compatible models trained on the same feature definitions and ordering. If preprocessing was used during training, it must be included with the exported model. No genuine prediction should be claimed until this integration has been tested successfully.
 
-The notebook includes the following analyses and visualizations:
+## 🛠️ Technology Stack
 
-- Descriptive statistics and variable distributions
-- Correlation matrix
-- Variance Inflation Factor (VIF) results
-- Actual versus predicted economic growth
-- Random Forest feature importance
+- Python
+- Pandas and NumPy
+- Scikit-learn
+- XGBoost
+- CatBoost
+- Jupyter Notebook
+- React
+- TypeScript
+- Charting library used by the frontend
+- FastAPI for the prediction API
 
-## 📁 Repository Structure
+## 📂 Repository Structure
 
 ```text
 brics-economic-growth-ml/
 │
-├── ML_Model.ipynb    # Analysis and model development
-├── README.md         # Project documentation
-└── .gitignore        # Excludes datasets and temporary files
+├── ML_Model.ipynb
+├── README.md
+├── .gitignore
+│
+└── website/
+    ├── package.json
+    ├── public/
+    ├── src/
+    └── backend/
+        ├── main.py
+        └── requirements.txt
 ```
 
-The notebook contains the data analysis, temporal cross-validation, model training and tuning, evaluation, visualizations, and feature importance analysis.
+*The website folder structure above is illustrative; filenames may differ in the actual repository. Keep the README consistent with the files committed to GitHub.*
 
-The raw Excel datasets are excluded from version control. Users must obtain the appropriate data files separately and configure the file paths in the notebook.
-
-## ⚙️ Installation and Setup
+## ⚙️ Running the Project Locally
 
 ### 1. Clone the repository
 
@@ -186,62 +239,83 @@ git clone https://github.com/aasthasethi28/brics-economic-growth-ml.git
 cd brics-economic-growth-ml
 ```
 
-### 2. Create a virtual environment (optional)
+### 2. Run the research notebook
 
-```bash
-python -m venv .venv
-```
-
-Activate it on Windows:
-
-```powershell
-.venv\Scripts\Activate.ps1
-```
-
-### 3. Install the required libraries
+Install the Python libraries required by the notebook, then launch Jupyter:
 
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn xgboost catboost openpyxl jupyter
-```
-
-### 4. Prepare the datasets
-
-Place the training and test Excel files in the locations expected by the notebook. Update the file paths in the notebook if necessary.
-
-### 5. Run the notebook
-
-```bash
 jupyter notebook
 ```
 
-Open `ML_Model.ipynb` and execute the cells in order.
+Open `ML_Model.ipynb`. Ensure the required datasets are available locally and the notebook paths are configured correctly.
+
+### 3. Run the website
+
+```bash
+cd website
+npm install
+npm run dev
+```
+
+Use the local URL displayed by the development server.
+
+If the project uses Bun rather than npm, follow the scripts and package manager specified in its `package.json`.
+
+### 4. Run the prediction backend
+
+If the backend files are present:
+
+```bash
+cd backend
+pip install -r requirements.txt
+```
+
+Configure the environment variables and trained-model paths according to `backend/README.md` or the backend configuration. Start the service using the documented FastAPI command.
+
+The backend will only return real predictions when compatible trained model files are configured.
+
+## 🔐 Data and Security
+
+- Raw datasets should not be committed unless sharing is authorized.
+- Keep `.env` files, API keys, and other credentials out of Git.
+- Exclude local virtual environments, caches, and generated model artifacts as appropriate.
+- Provide data-source documentation and respect applicable dataset licenses.
+- Never label illustrative values as empirical findings.
 
 ## ⚠️ Limitations
 
-- Historical patterns may not represent future economic conditions.
-- Cross-validation performance may differ from performance on the held-out test period.
-- Feature importance reflects model behavior and does not establish causality.
-- Results depend on the quality, definitions, and consistency of the source data.
-- Country-level differences and temporal changes may affect model generalization.
+- Historical patterns may not generalize to future economic conditions.
+- Performance can differ between temporal validation and the final test period.
+- Feature importance describes model behavior, not causal effects.
+- Results depend on source-data quality, definitions, and consistency.
+- Live predictions require correctly configured trained models and preprocessing.
+- Country-level and time-specific differences may affect generalization.
 
 ## 🚀 Future Improvements
 
-Potential extensions include:
-
-- Documenting data sources, indicator definitions, and units.
-- Adding a reproducible dependency file such as `requirements.txt`.
-- Evaluating model stability across countries and time periods.
-- Exploring additional validation approaches appropriate for panel data.
-- Applying further interpretability methods to complement feature importance analysis.
+- Connect verified model results to the dashboard.
+- Integrate and test the trained-model prediction API.
+- Document data sources and indicator definitions.
+- Improve reproducibility with dependency files and consistent paths.
+- Evaluate model stability across countries and periods.
+- Extend model interpretation and robustness analysis.
 
 ## 👩‍💻 Author
 
-**Aastha Sethi**
-
+**Aastha Sethi**  
 B.Tech — Artificial Intelligence and Machine Learning
 
 GitHub: [@aasthasethi28](https://github.com/aasthasethi28)
 
 ## 📄 Disclaimer
 
-This project analyzes historical economic and related indicators for academic and research purposes. Predictive relationships should not be interpreted as proof of causal effects.
+This project is intended for academic and research purposes. Machine learning predictions and feature importance should not be interpreted as evidence of causal effects.
+
+---
+
+<p align="center">
+  <b>Explore the research. Interact with the dashboard. Understand the models.</b><br/>
+  <a href="https://brics-growth-insights.lovable.app">Launch BRICS Economic Growth Lab →</a>
+</p>
+
